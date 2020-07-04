@@ -46,4 +46,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void onButtonClick(View view){
+        Intent myIntent = new Intent(getBaseContext(),   ReceiptActivity.class);
+        startActivity(myIntent);
+    }
 }
