@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Receipt Scanner</string>
+    <string name="title_activity_receipt">ReceiptActivity</string>
 </resources>
