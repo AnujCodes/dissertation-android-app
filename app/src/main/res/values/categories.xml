@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>Food and Drinks</item>
+        <item>Bills</item>
+        <item>Entertainment</item>
+        <item>Fuel</item>
+        <item>Groceries</item>
+        <item>Health</item>
+        <item>Travel</item>
+        <item>Investment</item>
+    </string-array>
+</resources>
