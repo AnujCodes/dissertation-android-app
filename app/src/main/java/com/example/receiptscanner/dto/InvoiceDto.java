@@ -8,7 +8,17 @@ public class InvoiceDto implements Serializable {
     private String vendor;
     private String totalAmount;
     private String category;
+    private String currency;
+    private String employeeID;
     private boolean reimbursable;
+
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
 
     public String getInvoiceId() {
         return invoiceId;
@@ -58,19 +68,41 @@ public class InvoiceDto implements Serializable {
         this.reimbursable = reimbursable;
     }
 
-    public InvoiceDto(String invoiceId, String invoiceDate, String vendor, String totalAmount, String category,
-                      boolean reimbursable) {
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public InvoiceDto() {
         super();
+    }
+
+    public InvoiceDto(String invoiceId, String invoiceDate, String vendor, String totalAmount, String category, String currency, String employeeID, boolean reimbursable) {
         this.invoiceId = invoiceId;
         this.invoiceDate = invoiceDate;
         this.vendor = vendor;
         this.totalAmount = totalAmount;
         this.category = category;
+        this.currency = currency;
+        this.employeeID = employeeID;
         this.reimbursable = reimbursable;
     }
 
-    public InvoiceDto() {
-        super();
+    @Override
+    public String toString() {
+        return "InvoiceDto{" +
+                "invoiceId='" + invoiceId + '\'' +
+                ", invoiceDate='" + invoiceDate + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", totalAmount='" + totalAmount + '\'' +
+                ", category='" + category + '\'' +
+                ", currency='" + currency + '\'' +
+                ", employeeID='" + employeeID + '\'' +
+                ", reimbursable=" + reimbursable +
+                '}';
     }
 
 }
