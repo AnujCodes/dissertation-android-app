@@ -15,10 +15,11 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onButtonClick"
-            android:text="View Invoice"
+            android:onClick="onConfirmButtonClick"
+            android:text="Confirm"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/buttonUploadFile"
+            app:layout_constraintStart_toEndOf="@+id/btnTakePicture" />
 
         <Button
             android:id="@+id/btnTakePicture"
@@ -37,6 +38,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonUploadFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onUploadFileButtonClick"
+            android:text="Upload a File"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

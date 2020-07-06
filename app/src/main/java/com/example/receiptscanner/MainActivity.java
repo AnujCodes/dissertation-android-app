@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCapture;
     private ImageView imgCapture;
     private static final int Image_Capture_Code = 1;
+    private static final int PICK_FILE_REQUEST = 2;
     private InvoiceAPI invoiceAPI;
     static final String BASE_URL = "https://dissertation-project.cfapps.us10.hana.ondemand.com/";
-    static final String filename = "image";
+    static final String filename = "image.jpeg";
     static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     File file;
     Uri imageUri;
@@ -83,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Image_Capture_Code) {
-            if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Image_Capture_Code) {
                 try {
                     Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
                             getContentResolver(), imageUri);
@@ -98,9 +100,27 @@ public class MainActivity extends AppCompatActivity {
 //                Bitmap bp = (Bitmap) data.getExtras().get("data");
 //                file=getFileFromBitmap(bp);
 //                imgCapture.setImageBitmap(bp);
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             }
+            else if(requestCode == PICK_FILE_REQUEST){
+                if(data == null){
+                    //no data present
+                    return;
+                }
+                try {
+                Uri selectedFileUri = data.getData();
+                Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
+                        getContentResolver(), selectedFileUri);
+                imgCapture.setImageBitmap(thumbnail);
+                String imageurl = getRealPathFromURI(selectedFileUri);
+                file = getFileFromBitmap(thumbnail);
+
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -147,16 +167,26 @@ public class MainActivity extends AppCompatActivity {
     };
 
     //On button click of upload button
-    public void onButtonClick(View view){
+    public void onConfirmButtonClick(View view){
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile", file.getName(), reqFile);
         invoiceAPI.postInvoiceImage(body).enqueue(postInvoiceCallback);
     }
 
+    public void onUploadFileButtonClick(View view){
+        Intent intent = new Intent();
+        //sets the select file to all types of files
+        intent.setType("*/*");
+        //allows to select data and return it
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        //starts new activity to select file and return data
+        startActivityForResult(Intent.createChooser(intent,"Choose File to Upload.."),PICK_FILE_REQUEST);
+    }
+
     private File getFileFromBitmap(Bitmap bitmap){
         //Convert bitmap to byte array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
         byte[] bitmapdata = bos.toByteArray();
 
         //write the bytes in file
