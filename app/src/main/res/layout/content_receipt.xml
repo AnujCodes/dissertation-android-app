@@ -19,7 +19,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:hint="Employee ID"
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/editTextCurrency" />
@@ -32,7 +32,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:hint="Currency"
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/editTextTotalAmount" />
@@ -45,7 +45,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
             android:hint="Invoice ID"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -58,7 +58,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:hint="Date of Invoice"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/editTextInvoiceId" />
@@ -72,7 +72,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:hint="Vendor Name"
-            android:inputType="textPersonName"
+            android:inputType="text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
@@ -85,7 +85,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:hint="Total Amount"
-            android:inputType="numberDecimal"
+            android:inputType="text"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/editTextVendorName" />
